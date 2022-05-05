@@ -1,6 +1,6 @@
 import React, {useState, useContext} from "react";
 import { useMutation} from "react-query";
-import { FindUser } from "../data/apiCalls";
+import { LogIn } from "../data/apiCalls";
 import { AuthenticationContext} from "../context/authenticationContext";
 
 const MyForm = ({number, setChoice}) => {
@@ -8,7 +8,7 @@ const MyForm = ({number, setChoice}) => {
     const [inputs, setInputs] = useState({});
     const [errorVisibility, setErrorVisibility] = useState("hidden");
 
-    const {mutate, isLoading, } = useMutation((inputs) => FindUser(inputs), {
+    const {mutate, isLoading, } = useMutation((inputs) => LogIn(inputs), {
         onError: (error) => {console.log(error.message);},
         onSettled: (data) => SuccessTreatment(data)
     
@@ -54,10 +54,10 @@ const MyForm = ({number, setChoice}) => {
 
         <>
             <form onSubmit={handleSubmit}>
-                <label> Username
-                    <input type = "text" name="username" value={inputs.username || ""} onChange={handleChange}/>
-                </label>
                 <label> Login
+                    <input type = "text" name="login" value={inputs.login || ""} onChange={handleChange}/>
+                </label>
+                <label> Password
                     <input type = "text" name="password" value={inputs.password || ""} onChange={handleChange}/>
                 </label>
                 <button type = "submit">

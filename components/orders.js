@@ -5,7 +5,7 @@ import {AuthenticationContext} from "../context/authenticationContext";
 
 const Orders = ({SetsTheChoiceOfTheTopic}) => {
     const {authentication} = useContext(AuthenticationContext);
-    const [productsToShow, setProductsToShow] = useState([]);
+    const [orderToShow, setOrderToShow] = useState({products:[]});
 
     const {data, isLoading} = useQuery("orders", () => GetAllOrdersWithProducts(authentication.token));
  
@@ -17,36 +17,20 @@ const Orders = ({SetsTheChoiceOfTheTopic}) => {
       </div>
     );
 
-    const ShowProducts = (productsList) =>
+    const ShowProducts = (order) =>
     {
-        setProductsToShow(productsList);
-        
+        let orderObject = new Object();
+
+        orderObject = {
+            dateCrea: order.dateCrea,
+            name: order.name,
+            numberOfProducts: order.numberOfProducts,
+            products: order.products,
+            total: order.total
+        };
+        setOrderToShow(orderObject);
+ 
     };
-    
-    const AccumulationTotal = () =>
-    {
-        let initialvalue = 0;
-        const reducer = (accumulator, item) =>
-        {
-            return accumulator + item.price;
-        };
-        const total = productsToShow.reduce(reducer, initialvalue).toFixed(2);
-        return total;
-
-    };  
-    
-    const AccumulationQuantity = () =>
-    {
-        let initialvalue = 0;
-        const reducer = (accumulator, item) =>
-        {
-            return accumulator + item.price;
-        };
-        const total = productsToShow.reduce(reducer, initialvalue).toFixed(2);
-        return total;
-
-    }; 
-
 
     return (
         <div className="flex flex-col w-screen h-screen mx-10">
@@ -57,7 +41,7 @@ const Orders = ({SetsTheChoiceOfTheTopic}) => {
                     {data.map((order, index) => 
                         <button key={order.name + index.toString} 
                             className=" py-3 text-center grow hover:scale-105 focus:bg-green-300"
-                            onClick={() => ShowProducts(order.products)}> 
+                            onClick={() => ShowProducts(order)}> 
                             {order.name}
                         </button>
                     )}
@@ -68,17 +52,30 @@ const Orders = ({SetsTheChoiceOfTheTopic}) => {
                 </p>
                 <div className="mt-14 mx-52">
                     <div className="w-52 h-36 bg-green-600 rounded-lg ">
-                        <p className="pt-4 pl-6 font-sans font-medium text-white">
-                            Order total :
-                            {AccumulationTotal()}
-                        </p>
+                        <div>
+                            <p className="pt-4 pl-6 font-sans font-medium text-white">
+                                Order total :
+                            </p>
+                        </div>
+                        <div>
+                            <p className="pt-5 pl-14 font-sans text-3xl text-white">
+                                {orderToShow.total} €
+                            </p>
+                        </div>                    
                     </div>
                 </div>
                 <div className="mt-14 mr-52">
                     <div className="w-52 h-36 bg-blue-600 rounded-lg ">
-                        <p className="pt-4 pl-6 font-sans font-medium text-white">
-                            Number of products :
-                        </p>
+                        <div>
+                            <p className="pt-4 pl-6 font-sans font-medium text-white">
+                                Number of products :
+                            </p>
+                        </div>
+                        <div>
+                            <p className="pt-5 pl-24 font-sans text-3xl text-white">
+                                {orderToShow.numberOfProducts}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -90,7 +87,7 @@ const Orders = ({SetsTheChoiceOfTheTopic}) => {
                 </div>
                 <div className="">
                     <ul>
-                        {productsToShow.map((product, index) =>
+                        {orderToShow.products.map((product, index) =>
                             <li
                             className="px-6 py-2 border-b border-gray-200 w-full"
                              key={product.name + index.toString}> {product.name} {product.price}</li>

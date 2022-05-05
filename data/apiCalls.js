@@ -1,5 +1,5 @@
 const urlOrders = "https://localhost:7244/Orders";
-const urlFindUser = "https://localhost:7244/Users/Login";
+const urlLogIn = "https://localhost:7244/Users/LogIn";
 
 export async function GetAllOrdersWithProducts(token){
     let request = null;
@@ -21,7 +21,7 @@ export async function GetAllOrdersWithProducts(token){
     return ordersWithProducts;
 }
 
-export async function FindUser(inputs) {
+export async function LogIn(inputs) {
     let request = null;
     let foundUser = null;
 
@@ -34,7 +34,7 @@ export async function FindUser(inputs) {
         body: JSON.stringify(inputs)
     };
 
-    request = await fetch(urlFindUser, options);
+    request = await fetch(urlLogIn, options);
 
     foundUser = await request.json();
 

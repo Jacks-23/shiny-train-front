@@ -67,10 +67,11 @@ const IndexPage = () => {
    
     return (
         <>
-           <div className="flex flex-row bg-emerald-400 right justify-end pr-6">
-               { authentication != null ? <button onClick={LogoutFunction}> Logout </button>
-               : <button onClick={() => SetsTheChoiceOfTheTopic(0)} > Login </button> }
-               <button className="pl-4" onClick={() => setChoice(0)}> Reset button</button> 
+           <div className="flex flex-row bg-emerald-400 right justify-end pt-12 pr-32">
+               { authentication != null ? <button onClick={LogoutFunction}> LogOut </button>
+               : <button onClick={() => SetsTheChoiceOfTheTopic(0)} > LogIn </button> }
+               <button className="pl-4" > SignUp </button> 
+               <button className="pl-4" onClick={() => setChoice(0)}> Home </button> 
            </div>
             <div className={`bg-emerald-400 w-full h-screen ${defaultVisibility}`}>
                 <div className="pt-8 pl-10"> <p className="text-4xl text-gray-50">Welcome to your app 
