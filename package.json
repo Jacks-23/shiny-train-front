@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start"
   },
+  "proxy": "https://localhost:7244",
   "keywords": [],
   "author": "",
   "license": "ISC",

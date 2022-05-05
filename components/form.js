@@ -1,10 +1,10 @@
 import React, {useState, useContext} from "react";
 import { useMutation} from "react-query";
 import { FindUser } from "../data/apiCalls";
-import { UserContext } from "../context/userContext";
+import { AuthenticationContext} from "../context/authenticationContext";
 
 const MyForm = ({number, setChoice}) => {
-    const {user, setUser} = useContext(UserContext);
+    const {setAuthentication} = useContext(AuthenticationContext);
     const [inputs, setInputs] = useState({});
     const [errorVisibility, setErrorVisibility] = useState("hidden");
 
@@ -15,21 +15,17 @@ const MyForm = ({number, setChoice}) => {
     });
     const SuccessTreatment = (data) => {
         if(data.status == 500){
-            setUser(null);
-            console.log("Fail");
-            console.log(data);
+            setAuthentication(null);
             setChoice(1);
             setErrorVisibility("visible");
         }
         else{
-            console.log(data);
-            setUser(data);
+            setAuthentication(data);
             setChoice(number);
             setErrorVisibility("hidden");
         }    
 
     };
-    console.log(user);
 
     const handleChange = (event) => {
         const name = event.target.name;

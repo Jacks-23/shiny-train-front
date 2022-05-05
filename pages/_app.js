@@ -1,17 +1,17 @@
 import React, {useState} from "react";
 import "../styles/globals.css";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { UserContext } from "../context/userContext";
+import { AuthenticationContext} from "../context/authenticationContext";
 
 const queryClient = new QueryClient();
 
 const MyApp = ({ Component, pageProps}) => {
-    const [user, setUser] = useState(null);
+    const [authentication, setAuthentication] = useState(null);
     return (
         <QueryClientProvider client={queryClient}>
-                <UserContext.Provider value={{user, setUser}}>
+                <AuthenticationContext.Provider value={{authentication, setAuthentication}}>
                     <Component {...pageProps} />
-                </UserContext.Provider>
+                </AuthenticationContext.Provider>
         </QueryClientProvider>
         
       );
