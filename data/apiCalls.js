@@ -1,5 +1,6 @@
 const urlOrders = "https://localhost:7244/Orders";
 const urlLogIn = "https://localhost:7244/Users/LogIn";
+const urlSignUp = "https://localhost:7244/Users/SignUp";
 
 export async function GetAllOrdersWithProducts(token){
     let request = null;
@@ -39,5 +40,26 @@ export async function LogIn(inputs) {
     foundUser = await request.json();
 
     return foundUser;
+
+}
+
+export async function SignUp(inputs) {
+    let request = null;
+    let createdUser = null;
+
+    const options = {
+        method: "POST",
+        headers: {
+            Accept:"*/*",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(inputs)
+    };
+
+    request = await fetch(urlSignUp, options);
+
+    createdUser = await request.json();
+
+    return createdUser;
 
 }

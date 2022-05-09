@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "../styles/globals.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AuthenticationContext} from "../context/authenticationContext";
+import '../localisation/loc.config';
 
 const queryClient = new QueryClient();
 

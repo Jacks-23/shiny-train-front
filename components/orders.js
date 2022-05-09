@@ -2,6 +2,7 @@ import React, {useContext, useState} from "react";
 import { useQuery } from "react-query";
 import { GetAllOrdersWithProducts } from "../data/apiCalls";
 import {AuthenticationContext} from "../context/authenticationContext";
+import ListOfProducts from "./listOfProducts";
 
 const Orders = ({SetsTheChoiceOfTheTopic}) => {
     const {authentication} = useContext(AuthenticationContext);
@@ -82,19 +83,12 @@ const Orders = ({SetsTheChoiceOfTheTopic}) => {
             <div className="flex flex-row w-full mt-4">
                 <div>
                     <p className="font-sans font-bold text-red-600 text-xl">
-                        Prodcuts :
+                        Products :
                     </p>
                 </div>
-                <div className="">
-                    <ul>
-                        {orderToShow.products.map((product, index) =>
-                            <li
-                            className="px-6 py-2 border-b border-gray-200 w-full"
-                             key={product.name + index.toString}> {product.name} {product.price}</li>
-                        )}
-                    </ul>
+                <div>
+                    <ListOfProducts orderToShow = {orderToShow}/>
                 </div>
-                
             </div>
         </div>
       );

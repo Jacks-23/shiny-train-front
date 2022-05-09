@@ -1,27 +1,32 @@
 import React, {useState, useEffect, useContext} from "react";
 import Orders from "../components/orders";
-import MyForm from "../components/form";
+import LogInForm from "../components/logInForm";
+import SignUpForm from "../components/signUpForm";
 import { AuthenticationContext} from "../context/authenticationContext";
+import { useTranslation } from "react-i18next";
 
 
 const IndexPage = () => {
+    const {t, i18n} = useTranslation();
     const {authentication, setAuthentication} = useContext(AuthenticationContext);
     const [choice, setChoice] = useState(0);
     const [connected, setConnected] = useState(false);
     const [number, setNumber] = useState(0);
 
-    useEffect(() => {
-
+    useEffect(() => {    
         if(!authentication){
             authentication == null;
             setConnected(false);
+            console.log(connected);
         }
         else{
             setConnected(true);
+            console.log(connected);
         }
-    }, [authentication]);
+    }, [authentication, connected]);
 
-    let formVisibility = "hidden"; 
+    let logInVisibility = "hidden";
+    let signUpVisibility = "hidden"; 
     let option1Visibility = "hidden"; 
     let option2Visibility = "hidden";
     let option3Visibility = "hidden";
@@ -29,7 +34,7 @@ const IndexPage = () => {
     
     switch (choice) {
         case 1:
-            formVisibility = "visible";
+            logInVisibility = "visible";
             defaultVisibility = "hidden";
             break;
         case 2 :
@@ -44,6 +49,10 @@ const IndexPage = () => {
             option3Visibility = "visible";
             defaultVisibility = "visible";
             break;
+        case 5 :
+            signUpVisibility = "visible";
+            defaultVisibility = "hidden";
+            break;
     
         default:
             break;
@@ -53,8 +62,10 @@ const IndexPage = () => {
   const SetsTheChoiceOfTheTopic = (numb) => {
       if (connected)
       setChoice(numb);
-      else
-      {
+      else if(numb == 5){
+          setChoice(numb);
+      }
+      else{
         setChoice(1);
         setNumber(numb);
       }
@@ -64,29 +75,47 @@ const IndexPage = () => {
       setAuthentication(null);
       setChoice(0);
   };
+
+  const selectLanguage = (e) => {
+      i18n.changeLanguage(e.target.value);
+  };
    
     return (
         <>
            <div className="flex flex-row bg-emerald-400 right justify-end pt-12 pr-32">
                { authentication != null ? <button onClick={LogoutFunction}> LogOut </button>
-               : <button onClick={() => SetsTheChoiceOfTheTopic(0)} > LogIn </button> }
-               <button className="pl-4" > SignUp </button> 
+               : <>
+                <button onClick={()=> SetsTheChoiceOfTheTopic(0)}> Sign in</button>
+                <button onClick={() => SetsTheChoiceOfTheTopic(0)} > LogIn </button>
+                <button className="pl-4" onClick={() => SetsTheChoiceOfTheTopic(5)} > SignUp </button>
+               </>
+               }
+               
                <button className="pl-4" onClick={() => setChoice(0)}> Home </button> 
+               <div className="pl-4">
+                   <select id="selectedLanguage" className="w-35 text-gray-500" onChange={selectLanguage}>
+                       <option value = "en" > EN </option>
+                       <option value = "fr" > FR </option>
+                   </select>
+               </div>
            </div>
             <div className={`bg-emerald-400 w-full h-screen ${defaultVisibility}`}>
                 <div className="pt-8 pl-10"> <p className="text-4xl text-gray-50">Welcome to your app 
                 {authentication ? `${authentication.user.firstName} ${authentication.user.lastName}` : ''} ! </p> </div>
                 <div className=" flex flex-col">
-                    <button onClick={() => SetsTheChoiceOfTheTopic(2)}>Button de choix 1</button>
-                    <button onClick={() => SetsTheChoiceOfTheTopic(3)}>Button de choix 2</button>
-                    <button onClick={() => SetsTheChoiceOfTheTopic(4)}>Button de choix 3</button>
+                    <button onClick={() => SetsTheChoiceOfTheTopic(2)}>{t('shoppingApp')}</button>
+                    <button onClick={() => SetsTheChoiceOfTheTopic(3)}>Option 2 is comming</button>
+                    <button onClick={() => SetsTheChoiceOfTheTopic(4)}>Option 3 is comming</button>
                 </div>
             </div>
-            <div className={`${formVisibility}`}>
-                <MyForm number = {number} setChoice = {setChoice}/>
+            <div className={`${logInVisibility}`}>
+                <LogInForm number = {number} setChoice = {setChoice}/>
+            </div>
+            <div className={`${signUpVisibility}`}>
+                <SignUpForm number = {number} setChoice = {setChoice}/>
             </div>
             <div className={`${option1Visibility}`}>
-            { authentication != null ? <Orders SetsTheChoiceOfTheTopic = {SetsTheChoiceOfTheTopic}/>
+            { authentication ? <Orders SetsTheChoiceOfTheTopic = {SetsTheChoiceOfTheTopic}/>
                : <div/> }
                 
             </div>

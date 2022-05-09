@@ -3,7 +3,7 @@ import { useMutation} from "react-query";
 import { LogIn } from "../data/apiCalls";
 import { AuthenticationContext} from "../context/authenticationContext";
 
-const MyForm = ({number, setChoice}) => {
+const LogInForm = ({number, setChoice}) => {
     const {setAuthentication} = useContext(AuthenticationContext);
     const [inputs, setInputs] = useState({});
     const [errorVisibility, setErrorVisibility] = useState("hidden");
@@ -73,4 +73,4 @@ const MyForm = ({number, setChoice}) => {
     );
 };
  
-export default MyForm;
+export default LogInForm;
