@@ -104,7 +104,7 @@ const IndexPage = () => {
                 <SignIn number={number} setChoice={setChoice} needAccount={needAccount} setNeedAccount={setNeedAccount}/>
             </div>
             <div className={`${shoppingVisibility}`}>
-            { authentication ? <Orders SetTopic = {SetTopic}/>
+            { authentication ? <Orders/>
                : <></> }
                 
             </div>
