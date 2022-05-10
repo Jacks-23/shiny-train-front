@@ -2,8 +2,9 @@ import React, {useState, useContext} from "react";
 import { useMutation} from "react-query";
 import { LogIn } from "../data/apiCalls";
 import { AuthenticationContext} from "../context/authenticationContext";
+import InputText from "./inputText";
 
-const LogInForm = ({number, setChoice}) => {
+const LogInForm = ({number, setChoice, needAccount, setNeedAccount}) => {
     const {setAuthentication} = useContext(AuthenticationContext);
     const [inputs, setInputs] = useState({});
     const [errorVisibility, setErrorVisibility] = useState("hidden");
@@ -41,6 +42,11 @@ const LogInForm = ({number, setChoice}) => {
 
     });
 
+    const handleOnClick = () => {
+        setNeedAccount(!needAccount);
+
+    };
+
     if(isLoading){
 
         return (
@@ -52,23 +58,30 @@ const LogInForm = ({number, setChoice}) => {
 
     return (  
 
-        <>
-            <form onSubmit={handleSubmit}>
-                <label> Login
-                    <input type = "text" name="login" value={inputs.login || ""} onChange={handleChange}/>
-                </label>
-                <label> Password
-                    <input type = "text" name="password" value={inputs.password || ""} onChange={handleChange}/>
-                </label>
-                <button type = "submit">
-                    Submit
-                </button>
-
-            </form>
-            <div className={` mt-5 ${errorVisibility}`}>
-                <p className="text-red-600 text-center"> Invalid authentication</p>
+        <div className="flex justify-center">
+            <div className="shrink-0 h-80 w-80 mt-40 p-7 border shadow-md">
+                <form className="self-center" onSubmit={handleSubmit}>
+                    <div className="w-3/4 mb-8 "> 
+                        <InputText name={"login"} value={inputs.login || ""} placeholder={"Login"} handleChange={handleChange}/>
+                    </div>
+                    <div className="w-3/4 mb-8"> 
+                        <InputText name={"password"} value={inputs.password || ""} placeholder={"Password"} handleChange={handleChange}/>
+                    </div>
+                    <div className="flex flex-row gap-10">
+                        <div>
+                            <button onClick={handleOnClick}> Create account </button>
+                        </div>
+                        <div className="">
+                            <button type = "submit"> Submit</button>
+                        </div>
+                        
+                    </div>
+                </form>
+                <div className={` mt-5 ${errorVisibility}`}>
+                    <p className="text-red-600 text-center"> Invalid authentication</p>
+                </div>
             </div>
-        </>
+        </div>
         
     );
 };

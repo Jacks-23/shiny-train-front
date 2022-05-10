@@ -4,7 +4,7 @@ import { GetAllOrdersWithProducts } from "../data/apiCalls";
 import {AuthenticationContext} from "../context/authenticationContext";
 import ListOfProducts from "./listOfProducts";
 
-const Orders = ({SetsTheChoiceOfTheTopic}) => {
+const Orders = ({SetTopic}) => {
     const {authentication} = useContext(AuthenticationContext);
     const [orderToShow, setOrderToShow] = useState({products:[]});
 
