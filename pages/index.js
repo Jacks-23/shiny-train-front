@@ -1,7 +1,5 @@
 import React, {useState, useEffect, useContext} from "react";
 import Orders from "../components/orders";
-import LogInForm from "../components/logInForm";
-import SignUpForm from "../components/signUpForm";
 import { AuthenticationContext} from "../context/authenticationContext";
 import { useTranslation } from "react-i18next";
 import SignIn from "../components/signIn";
