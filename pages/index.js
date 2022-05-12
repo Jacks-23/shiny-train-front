@@ -76,7 +76,7 @@ const IndexPage = () => {
    
     return (
         <>
-           <div className="flex flex-row bg-emerald-400 right justify-end pt-12 pr-32">
+           <div className="flex flex-row bg-emerald-700 right justify-end pt-12 pr-32">
                { authentication != null ? <button onClick={LogoutFunction}> LogOut </button>
                : <>
                 <button value="Sign in" onClick={() => SetTopic(1) }> Sign in</button>
@@ -91,14 +91,43 @@ const IndexPage = () => {
                    </select>
                </div>
            </div>
-            <div className={`bg-emerald-400 w-full h-screen ${homeVisibility}`}>
-                <div className="pt-8 pl-10"> <p className="text-4xl text-gray-50">Welcome to your app 
-                {authentication ? `${authentication.user.firstName} ${authentication.user.lastName}` : ''} ! </p> </div>
-                <div className=" flex flex-col">
-                    <button onClick={() => SetTopic(2)}>{t('shoppingApp')}</button>
-                    <button onClick={() => SetTopic(3)}>Option 2 is comming</button>
-                    <button onClick={() => SetTopic(4)}>Option 3 is comming</button>
+            <div className={`flex flex-row bg-emerald-700 w-screen h-screen ${homeVisibility}`}>
+                <div className="flex flex-col h-full w-1/2 mt-14 pl-32">
+                    <div className="w-80 h-80 pt-8 overflow-visible whitespace-nowrap bg-orange-700 bg-opacity-70 rounded"> 
+                        <p className="p-5 text-4xl text-gray-50 text-center">Welcome to MyApp
+                            <br/> {authentication ? `${authentication.user.firstName} ${authentication.user.lastName} !` : ''} 
+                        </p> 
+                    </div>
+                    <div className="bg-red-900 w-52 h-52 rounded-full mt-20 animate-extendAndFade ">
+                        <div className="bg-red-900 w-52 h-52 rounded-full animate-extendAndFade ">
+                            <div className="bg-red-900 w-52 h-52 rounded-full animate-extendAndFade ">
+                            </div>
+                        </div>
+                    </div>
+                
                 </div>
+                <div className="flex w-1/2  mr-48 mt-28 justify-center">
+                    <ul className="h-96 pr-1 border-l-2 border-dotted">
+                        <li className="h-10 mb-28 mt-1 text-white"> .... </li>
+                        <li className="mb-28 text-white"> .... </li>
+                        <li className="h-10 pt-4 mb-28 text-white"> .... </li>
+                    </ul>
+                    <div className="flex flex-row">
+                        <div className=" flex flex-col gap-28">
+                            <button onClick={() => SetTopic(2)}>
+                                <p className="text-4xl font-semibold text-white text-left">{t('shoppingApp')}</p>
+                            </button>
+                            <button onClick={() => SetTopic(3)}>
+                                <p className="text-4xl font-semibold text-white text-left">Option 2 is comming</p>
+                            </button>
+                            <button onClick={() => SetTopic(4)}>
+                                <p className="text-4xl font-semibold text-white text-left">Option 3 is comming</p>
+                            </button>
+                        </div>
+
+                    </div>
+                    
+                </div>                
             </div>
             <div className={`${signInVisibility}`}>
                 <SignIn number={number} setChoice={setChoice} needAccount={needAccount} setNeedAccount={setNeedAccount}/>

@@ -60,26 +60,41 @@ const LogInForm = ({number, setChoice, needAccount, setNeedAccount}) => {
 
         <div className="flex justify-center">
             <div className="shrink-0 h-80 w-80 mt-40 p-7 border shadow-md">
-                <form className="self-center" onSubmit={handleSubmit}>
+                <div className="flex flex-row">
+                    <p className="font-bold text-blue-500">M</p>
+                    <p className="font-bold text-red-500">y</p>
+                    <p className="font-bold text-yellow-500">A</p>
+                    <p className="font-bold text-blue-500">p</p>
+                    <p className="font-bold text-green-500">p</p>
+                </div>
+                <div className="mt-2">
+                    <p className="text-xl">Sign in to MyApp </p>
+                </div>
+                <form className="self-center mt-5" onSubmit={handleSubmit}>
                     <div className="w-3/4 mb-8 "> 
                         <InputText name={"login"} value={inputs.login || ""} placeholder={"Login"} handleChange={handleChange}/>
                     </div>
                     <div className="w-3/4 mb-8"> 
                         <InputText name={"password"} value={inputs.password || ""} placeholder={"Password"} handleChange={handleChange}/>
                     </div>
-                    <div className="flex flex-row gap-10">
-                        <div>
-                            <button onClick={handleOnClick}> Create account </button>
-                        </div>
-                        <div className="">
-                            <button type = "submit"> Submit</button>
-                        </div>
-                        
+                    <div className="flex pt-4 place-content-end">
+                        <button className="px-8 py-3 bg-green-200 rounded-full text-center font-semibold 
+                    hover:scale-105 focus:bg-green-500" type = "submit"> Sign in</button>
                     </div>
                 </form>
                 <div className={` mt-5 ${errorVisibility}`}>
                     <p className="text-red-600 text-center"> Invalid authentication</p>
                 </div>
+            </div>
+            <div className="flex flex-row self-center ml-10 mt-36">
+                <div className="ml-4">
+                    <p className="text-4xl"> Or </p>
+                </div>
+                <div className="pl-16">
+                    <button className="p-3 bg-red-200 rounded-full text-center font-semibold 
+                    hover:scale-105 focus:bg-red-500" onClick={handleOnClick}> Create an account </button>
+                </div>
+
             </div>
         </div>
         
