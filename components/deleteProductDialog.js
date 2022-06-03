@@ -3,7 +3,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useMutation, useQueryClient } from "react-query";
 import { DeleteProduct } from "../data/apiCalls";
 import {FaRegCheckCircle} from "react-icons/fa";
-import {TbFaceIdError} from "react-icons/tb";
 
 const DeleteProductDialog = ({isDeleteProductOpen, setIsDeleteProductOpen, productToDelete, setProductToDelete}) => {
 
