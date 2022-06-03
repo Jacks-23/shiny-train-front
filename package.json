@@ -8,16 +8,21 @@
     "build": "next build && next export",
     "start": "next start"
   },
-  "proxy": "https://localhost:7244",
+  "proxy": [
+    "https://localhost:7244",
+    "https://crashprojectapi.azurewebsites.net"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@headlessui/react": "^1.6.1",
     "i18next": "^21.8.0",
     "next": "^12.1.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-i18next": "^11.16.9",
+    "react-icons": "^4.4.0",
     "react-query": "^3.34.16"
   },
   "devDependencies": {

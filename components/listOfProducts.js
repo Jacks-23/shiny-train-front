@@ -4,44 +4,44 @@ const ListOfProducts = ({orderToShow}) => {
 
     return (
         <>
-            {/* <ul>
-    
-                {orderToShow.products.map((product, index) =>
-                    <li
-                    className="px-6 py-2 border-b border-gray-200 w-full"
-                        key={product.name + index.toString}> {product.name} {product.price}</li>
-                )}
-            </ul> */}
-            <div className="">
-                <table className="min-w-full">
-                    <thead className="border-b">
-                        <tr>
-                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                Description
-                            </th>
-                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                Price
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {orderToShow.products.map((product, index) =>
-                            <tr key={product.name + index.toString} className="border-b">
-                                <td className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                    {product.name} 
+            <table className="border-collapse table-auto w-full text-sm">
+                <thead>
+                    <tr className="bg-amber-500">
+                       <th className="border-b font-medium pl-8 py-2 text-slate-100 text-left"> 
+                        Title
+                       </th> 
+                       <th className="border-b font-medium pl-8 py-2 text-slate-100 text-left"> 
+                        Price €
+                       </th>
+                       <th className="border-b font-medium pl-8 py-2 text-slate-100 text-left"> 
+                        Picture
+                       </th>
+                       <th className="border-b font-medium pl-8 py-2 pr-8 text-slate-100 text-left"> 
+                        Description
+                       </th>
+                    </tr>
+                </thead>
+                <tbody className="">
+                    {orderToShow.products.map((product) =>
+                                <tr key={`${product.name}_${product.productId}`} className="border-b border-slate-100 p-4 pl-8 text-slate-500">
+                                    <td className="border-b border-slate-100 p-4 pl-8 text-slate-500">
+                                        {product.name} 
+                                        </td>
+                                    <td className="border-b border-slate-100 p-4 pl-8 text-slate-500">
+                                        {product.price} € 
                                     </td>
-                                <td className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                    {product.price} 
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
-            
+                                    <td className="border-b border-slate-100 p-4 pl-8 text-slate-500">
+                                        {product.picture}
+                                    </td>
+                                    <td className="border-b border-slate-100 p-4 pl-8 text-slate-500">
+                                        {product.description} 
+                                    </td>
+                                </tr>
+                            )}
+                </tbody>
+            </table>
         </>
-                    
-    
+
       );
 };
  
