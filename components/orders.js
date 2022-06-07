@@ -5,7 +5,7 @@ import { GetAllProducts } from "../data/apiCalls";
 import {AuthenticationContext} from "../context/authenticationContext";
 import ListOfProducts from "./listOfProducts";
 import ListOfOrders from "./listOfOrders";
-import MyShop from "../assets/MyShop.png";
+import MyShop from "./../assets/MyShop.png";
 import Image from "next/image";
 import Products from "./products";
 import Cart from "./cart";
