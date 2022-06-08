@@ -5,8 +5,7 @@ import { GetAllProducts } from "../data/apiCalls";
 import {AuthenticationContext} from "../context/authenticationContext";
 import ListOfProducts from "./listOfProducts";
 import ListOfOrders from "./listOfOrders";
-import MyShop from "./../assets/MyShop.png";
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import Products from "./products";
 import Cart from "./cart";
 import ProductsManagement from "./productsManagement";
@@ -80,7 +79,7 @@ const Orders = () => {
        <>
         <div className="flex flex-col w-screen pl-10 h-screen">
             <div className="flex w-full mt-12 ml-52 mb-5">
-                <Image src={MyShop} height={70} width={200} quality={100}/>
+                <ExportedImage src="images/MyShop.PNG" alt="My Shop image" width={150} height={60}/>
                 <button className="w-auto h-auto bg-white py-1 px-4 text-center font-extralight 
                 transition: duration-200 ease-out focus:border-b-2 focus:border-black"
                 onClick={()=> setShopChoice(0)}> HOME </button>
